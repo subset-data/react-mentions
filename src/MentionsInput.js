@@ -584,7 +584,7 @@ class MentionsInput extends React.Component {
     // do not intercept key events if the suggestions overlay is not shown
     const suggestionsCount = countSuggestions(this.state.suggestions)
 
-    if (suggestionsCount === 0 || !this.suggestionsElement) {
+    if (suggestionsCount === 0 || !this.suggestionsElement || this.props.propogateSelection) {
       this.props.onKeyDown(ev)
 
       return
@@ -592,10 +592,8 @@ class MentionsInput extends React.Component {
 
 
     if (Object.values(KEY).indexOf(ev.keyCode) >= 0) {
-      if (!this.props.propogateSelection) {
         ev.preventDefault()
         ev.stopPropagation()
-      }
     }
 
     switch (ev.keyCode) {

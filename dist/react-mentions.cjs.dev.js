@@ -1451,17 +1451,15 @@ var MentionsInput = /*#__PURE__*/function (_React$Component) {
       // do not intercept key events if the suggestions overlay is not shown
       var suggestionsCount = countSuggestions(_this.state.suggestions);
 
-      if (suggestionsCount === 0 || !_this.suggestionsElement) {
+      if (suggestionsCount === 0 || !_this.suggestionsElement || _this.props.propogateSelection) {
         _this.props.onKeyDown(ev);
 
         return;
       }
 
       if (Object.values(KEY).indexOf(ev.keyCode) >= 0) {
-        if (!_this.props.propogateSelection) {
-          ev.preventDefault();
-          ev.stopPropagation();
-        }
+        ev.preventDefault();
+        ev.stopPropagation();
       }
 
       switch (ev.keyCode) {
